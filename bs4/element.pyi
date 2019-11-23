@@ -6,7 +6,7 @@ import re
 import sys
 from typing import Any, Dict, Generator, List, Optional
 
-from .auxiliary_typing import Filter, ResultSetType
+from .auxiliary_typing import Filter
 
 __license__ = "MIT"
 DEFAULT_OUTPUT_ENCODING = "utf-8"
@@ -550,7 +550,7 @@ class Tag(PageElement):
         text: Optional[Filter] = ...,
         limit: Optional[int] = ...,
         **kwargs: Filter
-    ) -> ResultSetType:
+    ) -> 'ResultSet':
         """Extracts a list of Tag objects that match the given
         criteria.  You can specify the name of the Tag and any
         attributes you want the Tag to have.
@@ -619,7 +619,7 @@ class SoupStrainer(object):
     def search(self, markup): ...
     def _matches(self, markup, match_against, already_tried: Optional[Any] = ...): ...
 
-class ResultSet(list):
+class ResultSet(List[Tag]):
     """A ResultSet is just a list that keeps track of the SoupStrainer
     that created it."""
 
