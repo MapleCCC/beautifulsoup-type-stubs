@@ -7,12 +7,14 @@ import re
 import sys
 import traceback
 import warnings
+from typing import Any, Optional
+
 from .builder import ParserRejectedMarkup, builder_registry
 from .dammit import UnicodeDammit
 from .element import (
+    DEFAULT_OUTPUT_ENCODING,
     CData,
     Comment,
-    DEFAULT_OUTPUT_ENCODING,
     Declaration,
     Doctype,
     NavigableString,
@@ -22,7 +24,6 @@ from .element import (
     SoupStrainer,
     Tag,
 )
-from typing import Any, Optional
 
 """Beautiful Soup
 Elixir and Tonic

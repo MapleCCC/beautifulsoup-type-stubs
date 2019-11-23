@@ -1,4 +1,5 @@
-from typing import Union, Optional, List, Pattern, Callable, Literal, AnyStr, NewType
+from typing import AnyStr, Callable, List, Literal, NewType, Optional, Pattern, Union
+
 from .element import Tag
 
 Filter = Union[AnyStr, List[AnyStr], Pattern, Callable[[Tag], bool], Literal[True]]
