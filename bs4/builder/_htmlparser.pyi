@@ -9,15 +9,15 @@ from typing import Any, Optional
 
 """Use the HTMLParser library to parse HTML files that aren't too bad."""
 __license__ = "MIT"
-__all__ = ['HTMLParserTreeBuilder']
+__all__ = ["HTMLParserTreeBuilder"]
 CONSTRUCTOR_TAKES_STRICT = major == 3 and minor == 2 and release >= 3
 CONSTRUCTOR_STRICT_IS_DEPRECATED = major == 3 and minor == 3
 CONSTRUCTOR_TAKES_CONVERT_CHARREFS = major == 3 and minor >= 4
-HTMLPARSER = 'html.parser'
+HTMLPARSER = "html.parser"
+
 class BeautifulSoupHTMLParser(HTMLParser):
     def __init__(self, *args, **kwargs):
         self.already_closed_empty_element = ...
-    
     def error(self, msg):
         """In Python 3, HTMLParser subclasses must implement error(), although this
         requirement doesn't appear to be documented.
@@ -28,38 +28,16 @@ class BeautifulSoupHTMLParser(HTMLParser):
         is to pretend it didn't happen and keep going.
         """
         ...
-    
-    def handle_startendtag(self, name, attrs):
-        ...
-    
-    def handle_starttag(self, name, attrs, handle_empty_element: bool = ...):
-        ...
-    
-    def handle_endtag(self, name, check_already_closed: bool = ...):
-        ...
-    
-    def handle_data(self, data):
-        ...
-    
-    def handle_charref(self, name):
-        ...
-    
-    def handle_entityref(self, name):
-        ...
-    
-    def handle_comment(self, data):
-        ...
-    
-    def handle_decl(self, data):
-        ...
-    
-    def unknown_decl(self, data):
-        ...
-    
-    def handle_pi(self, data):
-        ...
-    
-
+    def handle_startendtag(self, name, attrs): ...
+    def handle_starttag(self, name, attrs, handle_empty_element: bool = ...): ...
+    def handle_endtag(self, name, check_already_closed: bool = ...): ...
+    def handle_data(self, data): ...
+    def handle_charref(self, name): ...
+    def handle_entityref(self, name): ...
+    def handle_comment(self, data): ...
+    def handle_decl(self, data): ...
+    def unknown_decl(self, data): ...
+    def handle_pi(self, data): ...
 
 class HTMLParserTreeBuilder(HTMLTreeBuilder):
     is_xml = ...
@@ -67,25 +45,35 @@ class HTMLParserTreeBuilder(HTMLTreeBuilder):
     NAME = ...
     features = ...
     TRACKS_LINE_NUMBERS = ...
-    def __init__(self, parser_args: Optional[Any] = ..., parser_kwargs: Optional[Any] = ..., **kwargs):
+    def __init__(
+        self,
+        parser_args: Optional[Any] = ...,
+        parser_kwargs: Optional[Any] = ...,
+        **kwargs
+    ):
         self.parser_args = ...
-    
-    def prepare_markup(self, markup, user_specified_encoding: Optional[Any] = ..., document_declared_encoding: Optional[Any] = ..., exclude_encodings: Optional[Any] = ...):
+    def prepare_markup(
+        self,
+        markup,
+        user_specified_encoding: Optional[Any] = ...,
+        document_declared_encoding: Optional[Any] = ...,
+        exclude_encodings: Optional[Any] = ...,
+    ):
         """
         :return: A 4-tuple (markup, original encoding, encoding
         declared within markup, whether any characters had to be
         replaced with REPLACEMENT CHARACTER).
         """
         ...
-    
-    def feed(self, markup):
-        ...
-    
-
+    def feed(self, markup): ...
 
 if major == 3 and minor == 2 and not CONSTRUCTOR_TAKES_STRICT:
-    attrfind_tolerant = re.compile(r'\s*((?<=[\'"\s])[^\s/>][^\s/=>]*)(\s*=+\s*' r'(\'[^\']*\'|"[^"]*"|(?![\'"])[^>\s]*))?')
-    locatestarttagend = re.compile(r"""
+    attrfind_tolerant = re.compile(
+        r'\s*((?<=[\'"\s])[^\s/>][^\s/=>]*)(\s*=+\s*'
+        r'(\'[^\']*\'|"[^"]*"|(?![\'"])[^>\s]*))?'
+    )
+    locatestarttagend = re.compile(
+        r"""
   <[a-zA-Z][-.a-zA-Z0-9:_]*          # tag name
   (?:\s+                             # whitespace before attribute name
     (?:[a-zA-Z_][-.:a-zA-Z0-9_]*     # attribute name
@@ -98,12 +86,12 @@ if major == 3 and minor == 2 and not CONSTRUCTOR_TAKES_STRICT:
      )
    )*
   \s*                                # trailing whitespace
-""", re.VERBOSE)
+""",
+        re.VERBOSE,
+    )
     def parse_starttag(self, i):
         self.lasttag = ...
-    
     def set_cdata_mode(self, elem):
         self.cdata_elem = ...
         self.interesting = ...
-    
     CONSTRUCTOR_TAKES_STRICT = True

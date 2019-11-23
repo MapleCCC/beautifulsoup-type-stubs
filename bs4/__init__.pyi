@@ -9,7 +9,19 @@ import traceback
 import warnings
 from .builder import ParserRejectedMarkup, builder_registry
 from .dammit import UnicodeDammit
-from .element import CData, Comment, DEFAULT_OUTPUT_ENCODING, Declaration, Doctype, NavigableString, PageElement, ProcessingInstruction, ResultSet, SoupStrainer, Tag
+from .element import (
+    CData,
+    Comment,
+    DEFAULT_OUTPUT_ENCODING,
+    Declaration,
+    Doctype,
+    NavigableString,
+    PageElement,
+    ProcessingInstruction,
+    ResultSet,
+    SoupStrainer,
+    Tag,
+)
 from typing import Any, Optional
 
 """Beautiful Soup
@@ -34,7 +46,8 @@ __author__ = "Leonard Richardson (leonardr@segfault.org)"
 __version__ = "4.8.1"
 __copyright__ = "Copyright (c) 2004-2019 Leonard Richardson"
 __license__ = "MIT"
-__all__ = ['BeautifulSoup']
+__all__ = ["BeautifulSoup"]
+
 class BeautifulSoup(Tag):
     """
     This class defines the basic interface called by the tree builders.
@@ -57,11 +70,22 @@ class BeautifulSoup(Tag):
     like HTML's <br> tag), call handle_starttag and then
     handle_endtag.
     """
+
     ROOT_TAG_NAME = ...
     DEFAULT_BUILDER_FEATURES = ...
     ASCII_SPACES = ...
     NO_PARSER_SPECIFIED_WARNING = ...
-    def __init__(self, markup=..., features: Optional[Any] = ..., builder: Optional[Any] = ..., parse_only: Optional[Any] = ..., from_encoding: Optional[Any] = ..., exclude_encodings: Optional[Any] = ..., element_classes: Optional[Any] = ..., **kwargs):
+    def __init__(
+        self,
+        markup=...,
+        features: Optional[Any] = ...,
+        builder: Optional[Any] = ...,
+        parse_only: Optional[Any] = ...,
+        from_encoding: Optional[Any] = ...,
+        exclude_encodings: Optional[Any] = ...,
+        element_classes: Optional[Any] = ...,
+        **kwargs
+    ):
         """Constructor.
 
         :param markup: A string or a file-like object representing
@@ -116,13 +140,8 @@ class BeautifulSoup(Tag):
         self.known_xml = ...
         self.parse_only = ...
         self.markup = ...
-    
-    def __copy__(self):
-        ...
-    
-    def __getstate__(self):
-        ...
-    
+    def __copy__(self): ...
+    def __getstate__(self): ...
     @staticmethod
     def _check_markup_is_url(markup):
         """ 
@@ -130,56 +149,57 @@ class BeautifulSoup(Tag):
         if so. Markup can be unicode or str (py2) / bytes (py3).
         """
         ...
-    
-    def _feed(self):
-        ...
-    
+    def _feed(self): ...
     def reset(self):
         self.hidden = ...
         self.current_data = ...
         self.currentTag = ...
         self.tagStack = ...
         self.preserve_whitespace_tag_stack = ...
-    
-    def new_tag(self, name, namespace: Optional[Any] = ..., nsprefix: Optional[Any] = ..., attrs=..., sourceline: Optional[Any] = ..., sourcepos: Optional[Any] = ..., **kwattrs):
+    def new_tag(
+        self,
+        name,
+        namespace: Optional[Any] = ...,
+        nsprefix: Optional[Any] = ...,
+        attrs=...,
+        sourceline: Optional[Any] = ...,
+        sourcepos: Optional[Any] = ...,
+        **kwattrs
+    ):
         """Create a new tag associated with this soup."""
         ...
-    
     def new_string(self, s, subclass: Optional[Any] = ...):
         """Create a new NavigableString associated with this soup."""
         ...
-    
-    def insert_before(self, successor):
-        ...
-    
-    def insert_after(self, successor):
-        ...
-    
-    def popTag(self):
-        ...
-    
+    def insert_before(self, successor): ...
+    def insert_after(self, successor): ...
+    def popTag(self): ...
     def pushTag(self, tag):
         self.currentTag = ...
-    
-    def endData(self, containerClass: Optional[Any] = ...):
-        ...
-    
-    def object_was_parsed(self, o, parent: Optional[Any] = ..., most_recent_element: Optional[Any] = ...):
+    def endData(self, containerClass: Optional[Any] = ...): ...
+    def object_was_parsed(
+        self, o, parent: Optional[Any] = ..., most_recent_element: Optional[Any] = ...
+    ):
         """Add an object to the parse tree."""
         ...
-    
     def _linkage_fixer(self, el):
         """Make sure linkage of this fragment is sound."""
         ...
-    
     def _popToTag(self, name, nsprefix: Optional[Any] = ..., inclusivePop: bool = ...):
         """Pops the tag stack up to and including the most recent
         instance of the given tag. If inclusivePop is false, pops the tag
         stack up to but *not* including the most recent instqance of
         the given tag."""
         ...
-    
-    def handle_starttag(self, name, namespace, nsprefix, attrs, sourceline: Optional[Any] = ..., sourcepos: Optional[Any] = ...):
+    def handle_starttag(
+        self,
+        name,
+        namespace,
+        nsprefix,
+        attrs,
+        sourceline: Optional[Any] = ...,
+        sourcepos: Optional[Any] = ...,
+    ):
         """Push a start tag on to the stack.
 
         If this method returns None, the tag was rejected by the
@@ -188,36 +208,23 @@ class BeautifulSoup(Tag):
         don't call handle_endtag.
         """
         ...
-    
-    def handle_endtag(self, name, nsprefix: Optional[Any] = ...):
-        ...
-    
-    def handle_data(self, data):
-        ...
-    
+    def handle_endtag(self, name, nsprefix: Optional[Any] = ...): ...
+    def handle_data(self, data): ...
     def decode(self, pretty_print: bool = ..., eventual_encoding=..., formatter=...):
         """Returns a string or Unicode representation of this document.
         To get Unicode, pass None for encoding."""
         ...
-    
-
 
 _s = BeautifulSoup
 _soup = BeautifulSoup
+
 class BeautifulStoneSoup(BeautifulSoup):
     """Deprecated interface to an XML parser."""
-    def __init__(self, *args, **kwargs):
-        ...
-    
 
+    def __init__(self, *args, **kwargs): ...
 
-class StopParsing(Exception):
-    ...
+class StopParsing(Exception): ...
+class FeatureNotFound(ValueError): ...
 
-
-class FeatureNotFound(ValueError):
-    ...
-
-
-if __name__ == '__main__':
+if __name__ == "__main__":
     soup = BeautifulSoup(sys.stdin)
