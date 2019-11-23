@@ -13,14 +13,14 @@ XML or HTML to reflect a new encoding; that's the tree builder's job.
 """
 __license__ = "MIT"
 chardet_type = None
-xml_encoding = "^\s*<\\?.*encoding=['\"](.*?)['\"].*\\?>"
+xml_encoding = "^\\s*<\\?.*encoding=['\"](.*?)['\"].*\\?>"
 html_meta = "<\\s*meta[^>]+charset\\s*=\\s*[\"']?([^>]*?)[ /;'\">]"
 encoding_res = dict()
 
 class EntitySubstitution(object):
     """Substitute XML or HTML entities for the corresponding characters."""
 
-    def _populate_class_variables(): ...
+    def _populate_class_variables(self): ...
     CHARACTER_TO_XML_ENTITY = ...
     BARE_AMPERSAND_OR_BRACKET = ...
     AMPERSAND_OR_BRACKET = ...
@@ -32,7 +32,7 @@ class EntitySubstitution(object):
         appropriate XML entity for an XML special character."""
         ...
     @classmethod
-    def quoted_attribute_value(self, value):
+    def quoted_attribute_value(cls, value):
         """Make a value into a quoted XML attribute, possibly escaping it.
 
          Most strings will be quoted using double quotes.
