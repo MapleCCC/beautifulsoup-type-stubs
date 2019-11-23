@@ -1,5 +1,8 @@
-from typing import AnyStr, Callable, List, Literal, Pattern, Union
+from typing import *
 
 from .element import Tag
 
-Filter = Union[AnyStr, List[AnyStr], Pattern, Callable[[Tag], bool], Literal[True]]
+try:
+    Filter = Union[AnyStr, List[AnyStr], Pattern, Callable[[Tag], bool], Literal[bool]]
+except NameError:
+    Filter = Union[AnyStr, List[AnyStr], Pattern, Callable[[Tag], bool], bool]
