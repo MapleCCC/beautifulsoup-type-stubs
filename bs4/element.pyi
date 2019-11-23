@@ -6,7 +6,7 @@ import re
 import sys
 from typing import Any, Dict, List, Optional, Generator
 
-from .auxiliary_typing import Filter
+from .auxiliary_typing import Filter, ResultSetType
 
 __license__ = "MIT"
 DEFAULT_OUTPUT_ENCODING = "utf-8"
@@ -550,7 +550,7 @@ class Tag(PageElement):
         text: Optional[Filter] = ...,
         limit: Optional[int] = ...,
         **kwargs: Filter
-    ) -> "ResultSet":
+    ) -> ResultSetType:
         """Extracts a list of Tag objects that match the given
         criteria.  You can specify the name of the Tag and any
         attributes you want the Tag to have.
